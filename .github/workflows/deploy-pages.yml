@@ -24,6 +24,8 @@ jobs:
 
       - name: pnpm einrichten
         uses: pnpm/action-setup@v4
+        with:
+          version: 11.19.0
 
       - name: Node.js einrichten
         uses: actions/setup-node@v6
