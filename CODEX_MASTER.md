@@ -1,9 +1,10 @@
 # CODEX MASTER – VERKAUFSASSISTENT MOBILE
 
 Stand: 27.08.2026  
+Masterstand: V20 (GitHub-/Web-Onlinegang)
 Projektversion: 0.19.0  
 Backend-Version: 0.19.0  
-Ziel: bestehendes V19-Projekt stabil weiterentwickeln – NICHT neu aufsetzen.
+Ziel: bestehendes V19-Funktionsprojekt auf Basis des bestätigten V20-Online-Stands stabil weiterentwickeln – NICHT neu aufsetzen.
 
 ---
 
@@ -32,7 +33,7 @@ Die App soll langfristig eine echte **Verkaufszentrale** sein, nicht nur ein Tex
 
 ---
 
-## 3. Aktueller Stand V19
+## 3. Aktueller Stand V20
 
 ### Grundfunktionen
 - Expo / React Native, mobil-first
@@ -43,6 +44,18 @@ Die App soll langfristig eine echte **Verkaufszentrale** sein, nicht nur ein Tex
 - Spracheingabe
 - Stapelverkauf
 - lokale Speicherung via AsyncStorage
+
+### GitHub und öffentliche Web-Version V20
+- öffentliches Repository: `https://github.com/Stressi82/verkaufsassistent-mobile`
+- öffentliche App: `https://stressi82.github.io/verkaufsassistent-mobile/`
+- GitHub Pages veröffentlicht den statischen Expo-Web-Build automatisch aus `main`
+- Workflow: `.github/workflows/deploy-pages.yml`
+- bestätigter erfolgreicher GitHub-Actions-Lauf: `Verkaufsassistent online stellen #3`
+- lokaler und öffentlicher Web-Start wurden im Browser geprüft
+- die Verkaufszentrale wurde öffentlich ohne JavaScript-Fehler geladen
+- Push-Navigation ist im Web bewusst deaktiviert; Expo-Push bleibt eine Funktion der installierten Handy-App
+- der Web-Build läuft aktuell ohne `EXPO_PUBLIC_API_URL` und nutzt daher vorhandene lokale Fallbacks
+- das Node-Backend ist noch nicht öffentlich bereitgestellt
 
 ### KI
 Wählbare Provider:
@@ -385,10 +398,15 @@ App speichert den Pairing-Code lokal per AsyncStorage.
 
 ### Root
 ```text
+.github/workflows/deploy-pages.yml
 App.tsx
+CODEX_MASTER.md
+CODEX_MASTER_VERKAUFSASSISTENT_V20.md
 README.md
 app.json
 package.json
+pnpm-lock.yaml
+pnpm-workspace.yaml
 tsconfig.json
 eas.json
 ```
@@ -556,6 +574,10 @@ tsconfig.json
 13. Keine automatischen Käuferantworten.
 14. Keine automatisch erzeugten rechtlichen Rückgabe-/Zahlungsbedingungen.
 15. Statische Versandtarife sind Hilfswerte und müssen vor realem Labelkauf gegen den Anbieter geprüft werden.
+16. GitHub Pages stellt nur das statische Web-Frontend bereit. Das Node-Backend ist noch nicht öffentlich gehostet.
+17. KI-Analyse, eBay OAuth/Publish, Nachrichten, Transkription und Push benötigen weiterhin ein öffentliches HTTPS-Backend und `EXPO_PUBLIC_API_URL`.
+18. Der Expo-Web-Export ist grün, der vollständige TypeScript-Check meldet jedoch noch bestehende `possibly undefined`-Fehler in mehreren V19-Dateien. Das darf nicht als vollständig grüner Projektcheck bezeichnet werden.
+19. Native Expo-Push-Benachrichtigungen sind in der Browser-Version nicht verfügbar.
 
 ---
 
@@ -564,14 +586,15 @@ tsconfig.json
 ### PRIORITÄT A – Projekt stabil bauen
 **Zuerst erledigen, bevor neue große Features kommen.**
 
-1. Dependencies installieren.
-2. vollständigen TypeScript-Check ausführen.
+V20-Stand: Dependencies sind installiert, der Web-Export ist erfolgreich und GitHub Pages ist online. Der TypeScript-Check ist noch nicht grün.
+
+1. bestehende TypeScript-Fehler ohne Funktionsverlust beheben.
+2. vollständigen TypeScript-Check erneut ausführen.
 3. `npx expo-doctor` ausführen.
 4. Development Build konfigurieren/prüfen.
-5. echte Compile-Fehler beheben.
-6. Android Build testen.
-7. iOS Build testen.
-8. Runtime-Probleme dokumentieren und beheben.
+5. Android Build testen.
+6. iOS Build testen.
+7. Runtime-Probleme dokumentieren und beheben.
 
 Keine Funktionen entfernen, nur um den Build grün zu bekommen.
 
@@ -668,6 +691,21 @@ Codex MUSS:
 
 ## 15. Validierungscheckliste nach jeder größeren Änderung
 
+### Bestätigte Validierung des V20-Onlinegangs
+
+```text
+[x] Dependencies installiert
+[x] Expo-Web-Export erfolgreich
+[x] GitHub-Repository öffentlich erstellt
+[x] GitHub Pages über GitHub Actions erfolgreich veröffentlicht
+[x] öffentliche URL im Browser geladen
+[x] Verkaufszentrale sichtbar und Demo-Aktion lokal bedienbar
+[x] keine echten Secrets veröffentlicht
+[ ] vollständiger TypeScript-Check grün – bekannte V19-Fehler bleiben offen
+[ ] Backend öffentlich bereitgestellt
+[ ] native iOS-/Android-End-to-End-Prüfung
+```
+
 ```text
 [ ] App startet
 [ ] TypeScript Build/Check
@@ -713,7 +751,7 @@ Wenn etwas aktuell nicht sicher lösbar ist: klares TODO statt erfundener Lösun
 
 Wenn keine andere konkrete Aufgabe vorliegt, starte mit:
 
-> **„Arbeite PRIORITÄT A der CODEX_MASTER.md ab. Installiere die Dependencies, führe einen vollständigen TypeScript-/Expo-Buildcheck durch, behebe echte Compile-/Runtime-Probleme ohne Funktionen zu entfernen, dokumentiere jede Reparatur und aktualisiere danach README und CODEX_MASTER.md.“**
+> **„Arbeite PRIORITÄT A der CODEX_MASTER_VERKAUFSASSISTENT_V20.md ab. Behebe die dokumentierten TypeScript-/Runtime-Probleme ohne Funktionen zu entfernen, führe danach TypeScript-, Expo- und Web-Buildchecks durch und aktualisiere README sowie beide Masterdateien.“**
 
 ---
 
@@ -721,9 +759,10 @@ Wenn keine andere konkrete Aufgabe vorliegt, starte mit:
 
 Bei Widersprüchen gilt:
 
-1. tatsächlich aktueller V19-Code
-2. `CODEX_MASTER.md`
-3. aktuelle `README.md`
-4. ältere Versionen / alte Chatverläufe
+1. tatsächlich aktueller Code auf `main` im Repository `Stressi82/verkaufsassistent-mobile`
+2. `CODEX_MASTER_VERKAUFSASSISTENT_V20.md`
+3. `CODEX_MASTER.md`
+4. aktuelle `README.md`
+5. ältere Versionen / alte Chatverläufe
 
-Ältere ZIPs niemals als aktuellen Stand behandeln, wenn V19 vorhanden ist.
+Ältere ZIPs und V19-Masterdateien niemals als aktuellen Stand behandeln, wenn V20 vorhanden ist.
