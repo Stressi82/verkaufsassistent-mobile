@@ -1,0 +1,59 @@
+{
+  "expo": {
+    "name": "Verkaufsassistent",
+    "slug": "verkaufsassistent",
+    "version": "0.19.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "web": {
+      "output": "single"
+    },
+    "experiments": {
+      "baseUrl": "/verkaufsassistent-mobile"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "infoPlist": {
+        "NSCameraUsageDescription": "Wir benötigen die Kamera, damit du Artikel für deine Anzeige fotografieren kannst.",
+        "NSPhotoLibraryUsageDescription": "Wir benötigen Zugriff auf deine Fotos, damit du Artikelbilder auswählen kannst."
+      }
+    },
+    "android": {
+      "permissions": [
+        "CAMERA",
+        "READ_MEDIA_IMAGES"
+      ]
+    },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Die App benötigt Zugriff auf Fotos, um Artikelbilder auszuwählen.",
+          "cameraPermission": "Die App benötigt die Kamera, um Artikel zu fotografieren.",
+          "microphonePermission": false
+        }
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Die App benötigt die Kamera für Produktfotos und Barcodes.",
+          "microphonePermission": false,
+          "barcodeScannerEnabled": true
+        }
+      ],
+      [
+        "expo-audio",
+        {
+          "microphonePermission": "Die App benötigt das Mikrofon, damit du Produktangaben einsprechen kannst.",
+          "enableBackgroundRecording": false
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "enableBackgroundRemoteNotifications": true
+        }
+      ]
+    ]
+  }
+}
