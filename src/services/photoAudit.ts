@@ -27,11 +27,10 @@ function localFallback(photos: PhotoItem[]): PhotoAuditResult {
     };
   });
 
-  const recommendedCoverIndex = rows.reduce(
-    (best, row, index, arr) =>
-      row.coverScore > arr[best].coverScore ? index : best,
-    0
-  );
+  const recommendedCoverIndex = rows.reduce((best, row, index, arr) => {
+    const bestRow = arr[best];
+    return !bestRow || row.coverScore > bestRow.coverScore ? index : best;
+  }, 0);
 
   return {
     source: "local_fallback",

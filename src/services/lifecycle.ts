@@ -43,7 +43,7 @@ export function createLifecycleForStatus(
 
   return path.map((to, index) => ({
     id: eventId(),
-    from: index === 0 ? null : path[index - 1],
+    from: index === 0 ? null : path[index - 1] ?? null,
     to,
     changedAt: createdAt,
     note: index === 0 ? "Artikel angelegt" : "Lebenszyklus initialisiert",

@@ -84,7 +84,10 @@ function fitsBox(
   const sortedMax = [...dims].sort((a, b) => b - a);
   return (
     p.weightKg <= weight &&
-    p.sorted.every((value, index) => value <= sortedMax[index]) &&
+    p.sorted.every((value, index) => {
+      const maximum = sortedMax[index];
+      return maximum !== undefined && value <= maximum;
+    }) &&
     (maxGirth == null || p.girthCm <= maxGirth)
   );
 }

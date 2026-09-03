@@ -55,10 +55,10 @@ function calculateFromComparables(
     };
   }
 
-  const median =
-    sorted.length % 2 === 1
-      ? sorted[(sorted.length - 1) / 2]
-      : (sorted[sorted.length / 2 - 1] + sorted[sorted.length / 2]) / 2;
+  const upperIndex = Math.floor(sorted.length / 2);
+  const upper = sorted[upperIndex] ?? 0;
+  const lower = sorted[Math.max(0, upperIndex - 1)] ?? upper;
+  const median = sorted.length % 2 === 1 ? upper : (lower + upper) / 2;
 
   const sellFast = Math.max(1, Math.round(median * 0.85));
   const marketTypical = Math.max(1, Math.round(median));

@@ -103,7 +103,8 @@ function detectGroup(text: string): ProductGroup {
     .filter((group) => group !== "general")
     .map((group) => ({ group, score: countMatches(text, KEYWORDS[group]) }))
     .sort((a, b) => b.score - a.score);
-  return candidates[0]?.score > 0 ? candidates[0].group : "general";
+  const best = candidates[0];
+  return best && best.score > 0 ? best.group : "general";
 }
 
 function baseScore(id: SalesPlatformId, group: ProductGroup, region: Region): number {
