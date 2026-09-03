@@ -705,8 +705,7 @@ export default function App() {
     try {
       let records = savedListings;
 
-      for (let index = 0; index < items.length; index += 1) {
-        const item = items[index];
+      for (const [index, item] of items.entries()) {
         setBatchProgress(
           `Artikel ${index + 1} von ${items.length}: ${item.label || "wird analysiert"}`
         );
@@ -818,17 +817,17 @@ export default function App() {
     setBatchBusy(true);
     try {
       let records = savedListings;
-      for (let index = 0; index < items.length; index += 1) {
+      for (const [index, item] of items.entries()) {
         setBatchProgress(`Demo ${index + 1} von ${items.length}`);
         const now = new Date().toISOString();
         const record: ListingRecord = {
           id: `batch-demo-record-${index}`,
           draft: {
             ...DEMO_DRAFT,
-            title: labels[index],
+            title: item.label,
             price: index === 0 ? "69" : index === 1 ? "45" : "35",
           },
-          photos: items[index].photos,
+          photos: item.photos,
           status: "draft",
           createdAt: now,
           updatedAt: now,
@@ -836,7 +835,7 @@ export default function App() {
           selectedProvider,
           sellerProfile: DEMO_SELLER,
           platformStatuses: {},
-          photoAudit: demoPhotoAudit(items[index].photos.length),
+          photoAudit: demoPhotoAudit(item.photos.length),
           privacyAcknowledged: false,
           shippingPackage: null,
           shippingSelection: null,

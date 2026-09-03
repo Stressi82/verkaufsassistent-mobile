@@ -1,4 +1,23 @@
-# Verkaufsassistent V4 – reine Handy-App
+# Verkaufsassistent Mobile – aktueller Stand V21
+
+Öffentliche Web-App: <https://stressi82.github.io/verkaufsassistent-mobile/>
+Öffentliches GitHub-Repository: <https://github.com/Stressi82/verkaufsassistent-mobile>
+
+## Stabilisierung V21 – 03.09.2026
+
+- vollständiger strenger TypeScript-Check erfolgreich
+- Expo Doctor: 21/21 Prüfungen erfolgreich
+- Backend-Syntaxcheck erfolgreich
+- Web-Build sowie Android- und iOS-Bundles erfolgreich
+- Expo-SDK-57-Pakete auf kompatible Patchstände aktualisiert
+- fehlende Peer-Abhängigkeit `expo-asset` ergänzt
+- bekannte Indexzugriffe in Batch-Verarbeitung, Demo-Daten, Lifecycle, Fotoaudit, Plattformempfehlung, Preislogik und Versandkatalog abgesichert
+
+Die öffentliche GitHub-Pages-Version ist ein statisches Expo-Web-Frontend. KI-Analyse, eBay OAuth/Publish, Nachrichten, Transkription und Push benötigen weiterhin ein separat öffentlich bereitgestelltes HTTPS-Backend sowie `EXPO_PUBLIC_API_URL`. Ein echter signierter iOS-/Android-Geräte-Build ist noch nicht end-to-end bestätigt.
+
+Die verbindliche Übergabedatei ist `CODEX_MASTER_VERKAUFSASSISTENT_V21.md`.
+
+## Historischer Einstieg V4 – reine Handy-App
 
 Mobile App für **Android und iPhone**.
 
