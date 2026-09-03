@@ -71,10 +71,11 @@ export function BatchSelling({
       cameraType: ImagePicker.CameraType.back,
     });
 
-    if (!result.canceled && photos.length < 6) {
+    const asset = result.canceled ? undefined : result.assets[0];
+    if (asset && photos.length < 6) {
       setPhotos((current) => [
         ...current,
-        { id: id(), uri: result.assets[0].uri, role: "general" },
+        { id: id(), uri: asset.uri, role: "general" },
       ]);
     }
   };
